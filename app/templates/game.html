@@ -1,0 +1,27 @@
+{%extends "base.html" %}  
+<!-- number of spaces between keywords don't matter for jinja templates -->
+
+{% block content%}
+    <h1>Game Market</h1>
+    <form action="" method="post" novalidate>
+        {{form.hidden_tag()}}  <!-- Used by WTF form to generate a security token that provides security -->
+        Total Money:{{form.money}}
+        <p>
+            {{ form.item1_buy.label}}<br>
+            {{ form.item1_buy}}
+        </p>
+        <p>
+            {{ form.item2_buy.label}}<br>
+            {{ form.item2_buy}}
+        </p>
+        <p>
+            {{ form.item3_buy.label}}<br>
+            {{ form.item3_buy}}
+        </p>
+    
+
+
+        <p>{{ form.submit()}} </p>
+    </form>
+
+{%endblock%}

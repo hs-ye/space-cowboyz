@@ -1,0 +1,40 @@
+<!-- This is the base header that all others inherit from -->
+
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - Cowboy</title>
+        {% else %}
+        <title>Welcome Space Cowboy</title>
+        {% endif %}
+    </head>
+    <body>
+        <div>Space Cowboyz: 
+            <!-- Top menu bar -->
+            <a href="{{ url_for('index') }}">Home</a> <!-- flask fn that points to "/index"-->
+            <!-- url_for creates the link needed to calls the appropriate view function, as defined in routes-->
+            <!-- should use url_for() instead of direct link paths -->
+            <a href="{{ url_for('login_page') }}">Sign In</a>
+            <a href="{{ url_for('game') }}">Game</a>
+        
+        </div>
+        <hr> <!-- This gives a horizontal line -->
+        <!-- Below is method to render flashed messages -->
+        {% with messages = get_flashed_messages()%}
+        <!-- Check out with, if statements and loops in JINJA -->
+        {% if messages %} 
+        <ul>
+            {% for message in messages%}
+            <!-- displaying the message via flash pops them, so it shows only once -->
+            <li>{{message}}</li>
+            {%endfor%}
+        </ul>
+        {%endif%}
+        {%endwith%}
+        {%block content%} {% endblock %}  <!-- this is where other page html goes-->
+
+    </body>
+
+
+
+</html>

@@ -1,0 +1,21 @@
+{%extends "base.html" %}  
+<!-- number of spaces between keywords don't matter for jinja templates -->
+
+{% block content%}
+    <h1>Sign In</h1>
+    <form action="" method="post" novalidate>
+        {{form.hidden_tag()}}  <!-- Used by WTF form to generate a security token that provides security -->
+        <p>
+            {{ form.username.label}}<br>
+            {{ form.username(size=32)}}
+        </p>
+
+        <p>
+            {{ form.pw.label}} <br>
+            {{ form.pw(size=32)}}  <!-- Passing in params adds it to the HTML Attributes, can be used to add CSS classes-->
+        </p>
+        <p>{{form.remember_login()}} {{ form.remember_login.label }}</p>
+        <p>{{ form.submit()}} </p>
+    </form>
+
+{%endblock%}

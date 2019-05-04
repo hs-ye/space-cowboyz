@@ -1,3 +1,5 @@
 {
-    "python.pythonPath": "G:\\Anaconda3\\envs\\tf-gpu\\python.exe"
+    "python.pythonPath": "C:\\Users\\yehan\\AppData\\Local\\conda\\conda\\envs\\food_env\\python.exe",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true
 }

@@ -1,16 +1,12 @@
-<html>
-    <head>
-        {% if title %}
-        <title>{{ title }} - Cowboy</title>
-        {% else %}
-        <title>Welcome Space Cowboy</title>
-        {% endif %}
-    </head>
-    <body>
-        <h1>Hello, {{ user.username }}!</h1>
+{% extends "base.html"%}
+<!-- Jinja templating, this content to be added into the base.html -->
+{% block content %}    
+
+    <h1>Hello, {{ user.username }}!</h1>
 
         {% for post in posts %}
-        <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
+        <div><p>{{ post.author.username }} says: 
+            <b>{{ post.body }}</b></p></div>
         {% endfor %}
-    </body>
-</html>
+    
+{% endblock %}
