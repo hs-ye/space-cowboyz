@@ -16,22 +16,23 @@ class GameMarketBuyForm(FlaskForm):
     available for sale in the current market
     """
 
-    # will need to replace above with a dynamic generated version, from market object
-    # for good in MarketGoods:
-    # TODO: i think if i wrap this in an array object, then access the same object via Jinja it should work?
-    item1_buy = IntegerField("Spice")
-    item2_buy = IntegerField("Robots")
-    item3_buy = IntegerField("Crystals")
-    submit = SubmitField('Buy')
-
     def __init__(self, money=1000, MarketGoods=None):
         self.money = money
         self.MarketGoods = MarketGoods
-        if MarketGoods==None:
+        if self.MarketGoods==None:
             self.MarketGoods = {
             "Spice": 200,
             "Robots": 150,
             "Crystals": 100
         }
-        #if MarketGoods==None:  # need to find a way to pass a market data object in
+        # TODO: needs to be wrapped in a WTF.form_fields and rendered altogether
+        for key, value in self.MarketGoods.items():
+            # goes through the dict and creates each item as a field
+            exec('Item_{0}=IntegerField("{0}", description={1})'.format(key, value))
+
+        # hardcoded version - to be removed
+        # item1_buy = IntegerField("Spice")
+        # item2_buy = IntegerField("Robots")
+        # item3_buy = IntegerField("Crystals")
+        submit = SubmitField('Buy')
         
