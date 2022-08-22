@@ -43,6 +43,9 @@ def game():
     """The main game screen. WIP. Currently just has the market buy"""
     form = GameMarketBuyForm()
     if form.validate_on_submit():
-        """Updates variables for the market/inventory of the player"""
+        """TODO Updates variables for the market/inventory of the player
+        get the variable changes from form fields, then pass through 
+        to form object
+        """
         pass
     return render_template("game.html", form=form, title="Game Market")
