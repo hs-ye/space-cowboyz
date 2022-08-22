@@ -1,0 +1,12 @@
+{
+    "classes": [
+        "cruiser",
+        "destroyer"
+    ],
+    "roles":
+    [
+        "stealth",
+        "assault",
+        "escort"
+    ]
+}
