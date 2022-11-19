@@ -1,0 +1,12 @@
+- make basic battle module
+    - Ships and stats
+    - weapons and stats
+    - fleet allocation
+    - target acqusition
+    - firing calc
+    - battle setup, timer, 
+    - victory report
+
+- setup webserver for battle
+    - start battle
+    - config to accept fleet setup
