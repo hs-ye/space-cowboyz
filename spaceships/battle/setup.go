@@ -12,7 +12,7 @@ func Setarms(s *Ship) {
 		fmt.Println(*s.weapon) // before attemping to deference & print
 	}
 	fmt.Println("setting default guns on ship", s.S_id)
-	s.weapon = &Arms{"testgun", "normal", 100, nil} // get the pointer to new arms
+	s.weapon = &Arms{"testgun", "normal", 500, nil} // get the pointer to new arms
 
 	// this below won't work, as you are trying to set an object into a supposed pointer field
 	// newgun := Arms{"testgun", "normal", 100, nil}
@@ -29,7 +29,7 @@ func Makeship(id string) Ship {
 }
 
 func NewFleet(fname string) (f Fleet) {
-	f = Fleet{fname, []Ship{}, nil}
+	f = Fleet{f_id: fname, Ships: []Ship{}, Lastship: nil}
 	return f
 }
 
@@ -50,5 +50,26 @@ func (f *Fleet) AddShip(n int) {
 		f.Ships = append(f.Ships, newship)
 	}
 	fmt.Printf("fleet %s added ships %d\n", f.f_id, len(f.Ships))
+	f.CanFight() // set can fight status
 	f.Lastship = &newship
+}
+
+// Does a check to see if any ships are still able to fight
+// Sets the can fight flag on the fleet in place, returns number of active ships in the fleet
+func (f *Fleet) CanFight() (nships int) {
+	for _, s := range f.Ships {
+		if s.hull > 0 {
+			nships++
+		}
+	}
+	if nships > 0 {
+		f.canfight = true
+	} else {
+		f.canfight = false
+	}
+	return nships // no ships with hull > 0, can't fight anymore
+}
+
+func NewBattle(fleets [2]Fleet) (b Battle) {
+	return Battle{fleets: fleets}
 }

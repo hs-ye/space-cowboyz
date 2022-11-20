@@ -27,6 +27,7 @@ type Fleet struct {
 	f_id     string // fleet identifier
 	Ships    []Ship
 	Lastship *Ship // testing setting pointer
+	canfight bool  // default to false, maybe change this to an int, as a count?
 }
 
 type Battle struct {
@@ -42,4 +43,9 @@ func (s *Ship) Arms() (arms *Arms) {
 // Getter for Arm target
 func (a *Arms) Target() (t *Ship) {
 	return a.target
+}
+
+// modifies the hull points remaining
+func (s *Ship) ModifyHull(m int) {
+	s.hull += m
 }
