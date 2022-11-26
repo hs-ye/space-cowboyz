@@ -35,14 +35,26 @@ type Battle struct {
 }
 
 // Getter for Ship arms
+func (b *Battle) Fleets() *[2]Fleet {
+	return &b.fleets
+}
+
+// Getter for Ship arms
 func (s *Ship) Arms() (arms *Arms) {
-	arms = s.weapon
-	return arms
+	return s.weapon
+}
+
+// Getter for Ship Hull
+func (s *Ship) Hull() (hp int) {
+	return s.hull
 }
 
 // Getter for Arm target
 func (a *Arms) Target() (t *Ship) {
 	return a.target
+}
+func (a *Arms) SetTarget(t *Ship) {
+	a.target = t
 }
 
 // modifies the hull points remaining

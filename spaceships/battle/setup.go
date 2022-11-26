@@ -12,7 +12,7 @@ func Setarms(s *Ship) {
 		fmt.Println(*s.weapon) // before attemping to deference & print
 	}
 	fmt.Println("setting default guns on ship", s.S_id)
-	s.weapon = &Arms{"testgun", "normal", 500, nil} // get the pointer to new arms
+	s.weapon = &Arms{s.S_id + "testgun", "normal", 500, nil} // get the pointer to new arms
 
 	// this below won't work, as you are trying to set an object into a supposed pointer field
 	// newgun := Arms{"testgun", "normal", 100, nil}
@@ -43,7 +43,7 @@ func (f *Fleet) AddShip(n int) {
 	var newship Ship
 	var _sid string
 	for i := 1; i <= n; i++ {
-		_sid = f.f_id + " " + strconv.Itoa(i)
+		_sid = f.f_id + "_ship_" + strconv.Itoa(i)
 		newship = Makeship(_sid)
 		// not sure if this loop is optimised? Maybe preallocate the looped slice?
 		// it's fine as long as not adding huge amount and causing lots of re-allocations
@@ -70,6 +70,6 @@ func (f *Fleet) CanFight() (nships int) {
 	return nships // no ships with hull > 0, can't fight anymore
 }
 
-func NewBattle(fleets [2]Fleet) (b Battle) {
-	return Battle{fleets: fleets}
+func NewBattle(fleets *[2]Fleet) (b Battle) {
+	return Battle{fleets: *fleets}
 }
