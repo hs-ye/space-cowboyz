@@ -11,8 +11,9 @@ const MaxBattleRounds = 3600 // max rounds
 // Given a weapon, finds a target in enemy fleet, sets self weapon target
 // todo: give specific target to synchronise fire upon
 func (a *Arms) Findtarget(f *Fleet) {
-	for _, _s := range f.Ships {
-		// BUG: This is the problem!
+	for _, _s := range f.Ships { // BUG: This is the problem!
+		// see https://stackoverflow.com/questions/53676353/golang-for-range-pointers
+		// or https://stackoverflow.com/questions/38692998/strange-golang-append-behavior-overwriting-values-in-slice
 		// using range gives copy of the values.
 		// if you are needing original copy, store the data as pointers and pass the copies of the pointers around.
 		if _s.hull > 0 {
