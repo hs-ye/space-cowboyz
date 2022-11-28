@@ -21,15 +21,15 @@ func Setarms(s *Ship) {
 }
 
 // todo: Construct a ship from template
-func Makeship(id string) Ship {
+func Makeship(id string) *Ship {
 	s := Ship{"dd", id, 1000, 10, nil} //  note you can't ever access/evaluate a nil field - will result in panic
 	fmt.Println("setting guns on ship", s.S_id)
 	Setarms(&s) // this breaks if the Arms pointer is Nil, works if blank arms initialised.
-	return s
+	return &s
 }
 
 func NewFleet(fname string) (f Fleet) {
-	f = Fleet{f_id: fname, Ships: []Ship{}, Lastship: nil}
+	f = Fleet{f_id: fname, Ships: []*Ship{}, Lastship: nil}
 	return f
 }
 
@@ -44,10 +44,10 @@ func (f *Fleet) AddShip(n int) {
 	var _sid string
 	for i := 1; i <= n; i++ {
 		_sid = f.f_id + "_ship_" + strconv.Itoa(i)
-		newship = Makeship(_sid)
+		// newship =
 		// not sure if this loop is optimised? Maybe preallocate the looped slice?
 		// it's fine as long as not adding huge amount and causing lots of re-allocations
-		f.Ships = append(f.Ships, newship)
+		f.Ships = append(f.Ships, Makeship(_sid))
 	}
 	fmt.Printf("fleet %s added ships %d\n", f.f_id, len(f.Ships))
 	f.CanFight() // set can fight status

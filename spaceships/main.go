@@ -7,11 +7,11 @@ import (
 ) // imports are folder paths, will can only have one package per path
 
 // run a test battle
-func testbattle() {
+func testbattle(nf1, nf2 int) {
 	f1 := b.NewFleet("f1")
-	f1.AddShip(2)
+	f1.AddShip(nf1)
 	f2 := b.NewFleet("f2")
-	f2.AddShip(1)
+	f2.AddShip(nf2)
 	fmt.Printf("two fleets are %p vs %p\n ", &f1, &f2)
 
 	btl := b.NewBattle(&[2]b.Fleet{f1, f2})
@@ -28,13 +28,14 @@ func debug() {
 	f2.AddShip(1)
 
 	f2.Lastship.Findtarget(&f1)
-	f1.Lastship.Findtarget(&f1)
-	fmt.Printf("ship %s target found: %s\n", f2.Lastship.S_id, f2.Lastship.Arms().Target().S_id)
+	f1.Lastship.Findtarget(&f2)
+	fmt.Printf("ship %s target found: %s at location %p\n", f1.Lastship.S_id, f1.Lastship.Arms().Target().S_id, f1.Lastship.Arms().Target())
+	fmt.Printf("ship %s target found: %s at location %p\n", f2.Lastship.S_id, f2.Lastship.Arms().Target().S_id, f2.Lastship.Arms().Target())
 	fmt.Printf("f1 ship: %p - f2 ship %p\n", &f1.Ships[0], &f2.Ships[0])
 	fmt.Printf("f2 target: %p - f1 target %p\n", f1.Ships[0].Arms().Target(), f2.Ships[0].Arms().Target())
 
-	s1 := &f1.Ships[0]
-	s2 := &f2.Ships[0]
+	s1 := f1.Ships[0]
+	s2 := f2.Ships[0]
 	s1.Arms().Firewpn()
 	fmt.Println("HP left after attack:", s2.Hull())
 
@@ -63,6 +64,7 @@ func main() {
 	// how to append to a slice, vs how to append to pointer to slice?
 
 	// scr.ScratchTest()
-	// testbattle()
-	debug()
+	testbattle(8, 10)
+	// debug()
+	// scr.Slicingtest()
 }

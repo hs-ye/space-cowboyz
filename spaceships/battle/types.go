@@ -24,10 +24,10 @@ func (s *Ship) Weapon() (w Arms) {
 }
 
 type Fleet struct {
-	f_id     string // fleet identifier
-	Ships    []Ship
-	Lastship *Ship // testing setting pointer
-	canfight bool  // default to false, maybe change this to an int, as a count?
+	f_id     string  // fleet identifier
+	Ships    []*Ship // to access individual ships, must pass pointer to each one.
+	Lastship *Ship   // testing setting pointer
+	canfight bool    // default to false, maybe change this to an int, as a count?
 }
 
 type Battle struct {
